@@ -4,6 +4,7 @@ import { Check, Shield, Heart, Users } from "lucide-react";
 import { Link } from "react-router-dom";
 import ValuesGrid from "@/components/ValuesGrid";
 import FlowchartSection from "@/components/FlowchartSection";
+import logoAcessa from "@/assets/logo-acessa.jpg";
 
 const Home = () => {
   return (
@@ -18,9 +19,9 @@ const Home = () => {
             <div className="mb-8 inline-block">
               <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6">
                 <img 
-                  src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?auto=format&fit=crop&w=200&h=200" 
-                  alt="Logo Acessa" 
-                  className="w-24 h-24 rounded-xl mx-auto"
+                  src={logoAcessa} 
+                  alt="Logo Acessa - Mobilidade com dignidade" 
+                  className="w-32 h-32 rounded-xl mx-auto object-contain"
                 />
               </div>
             </div>
@@ -36,9 +37,11 @@ const Home = () => {
               <Button size="lg" className="bg-white text-primary hover:bg-white/90">
                 Baixar o App
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                Saiba Mais
-              </Button>
+              <Link to="/sobre">
+                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                  Saiba Mais
+                </Button>
+              </Link>
             </div>
 
             <div className="flex flex-wrap justify-center gap-8 text-white/90">

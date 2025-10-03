@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Car } from "lucide-react";
+import logoAcessa from "@/assets/logo-acessa.jpg";
 
 const Header = () => {
   const location = useLocation();
@@ -12,9 +12,11 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-primary-glow">
-              <Car className="h-6 w-6 text-primary-foreground" />
-            </div>
+            <img 
+              src={logoAcessa} 
+              alt="Logo Acessa - Mobilidade com dignidade" 
+              className="h-12 w-12 rounded-lg object-contain"
+            />
             <span className="text-xl font-bold text-primary">Acessa</span>
           </Link>
 

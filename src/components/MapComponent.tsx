@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Navigation, MapPin } from "lucide-react";
 
 const MapComponent = () => {
-  const [vehiclePosition, setVehiclePosition] = useState<[number, number]>([-23.5505, -46.6333]);
+  // Coordenadas centrais do Brasil
+  const [vehiclePosition, setVehiclePosition] = useState<[number, number]>([-14.235, -51.9253]);
   const [isTracking, setIsTracking] = useState(false);
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
     if (!isTracking) return;
@@ -27,24 +30,32 @@ const MapComponent = () => {
   return (
     <div className="space-y-6">
       <Card className="p-6">
-        <div className="flex items-center justify-between mb-4 flex-wrap gap-4">
-          <div>
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <MapPin className="h-5 w-5 text-primary" />
-              Localização em Tempo Real
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Acompanhe o veículo se aproximando da sua localização
-            </p>
+        <div className="mb-6">
+          <h3 className="text-xl font-bold flex items-center gap-2 mb-2">
+            <MapPin className="h-5 w-5 text-primary" />
+            Localização em Tempo Real
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            Acompanhe o veículo se aproximando da sua localização
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-3">
+            <Input
+              type="text"
+              placeholder="Digite o endereço (rua, cidade, estado...)"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="flex-1"
+            />
+            <Button
+              onClick={handleRequestVehicle}
+              disabled={isTracking}
+              className="bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity"
+            >
+              <Navigation className="h-4 w-4 mr-2" />
+              {isTracking ? "Veículo a Caminho" : "Solicitar Veículo"}
+            </Button>
           </div>
-          <Button
-            onClick={handleRequestVehicle}
-            disabled={isTracking}
-            className="bg-gradient-to-r from-primary to-primary-glow"
-          >
-            <Navigation className="h-4 w-4 mr-2" />
-            {isTracking ? "Veículo a Caminho" : "Solicitar Veículo"}
-          </Button>
         </div>
 
         {isTracking && (
@@ -58,10 +69,10 @@ const MapComponent = () => {
 
       <div className="h-[600px] rounded-lg overflow-hidden shadow-elegant border bg-muted relative">
         <iframe
-          src={`https://www.openstreetmap.org/export/embed.html?bbox=${vehiclePosition[1] - 0.01},${vehiclePosition[0] - 0.01},${vehiclePosition[1] + 0.01},${vehiclePosition[0] + 0.01}&layer=mapnik&marker=${vehiclePosition[0]},${vehiclePosition[1]}`}
+          src={`https://www.openstreetmap.org/export/embed.html?bbox=-73.9872,-33.7506,-34.7936,5.2718&layer=mapnik&marker=${vehiclePosition[0]},${vehiclePosition[1]}`}
           className="w-full h-full"
           style={{ border: 0 }}
-          title="Mapa de localização"
+          title="Mapa de localização do Brasil"
         />
         
         {isTracking && (
