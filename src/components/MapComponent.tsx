@@ -8,7 +8,8 @@ const MapComponent = () => {
   // Coordenadas centrais do Brasil
   const [vehiclePosition, setVehiclePosition] = useState<[number, number]>([-14.235, -51.9253]);
   const [isTracking, setIsTracking] = useState(false);
-  const [location, setLocation] = useState("");
+  const [origem, setOrigem] = useState("");
+  const [destino, setDestino] = useState("");
 
   useEffect(() => {
     if (!isTracking) return;
@@ -39,22 +40,34 @@ const MapComponent = () => {
             Acompanhe o veículo se aproximando da sua localização
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-3">
-            <Input
-              type="text"
-              placeholder="Digite o endereço (rua, cidade, estado...)"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              className="flex-1"
-            />
-            <Button
-              onClick={handleRequestVehicle}
-              disabled={isTracking}
-              className="bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity"
-            >
-              <Navigation className="h-4 w-4 mr-2" />
-              {isTracking ? "Veículo a Caminho" : "Solicitar Veículo"}
-            </Button>
+          <div className="space-y-3">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Input
+                type="text"
+                placeholder="Origem (rua, cidade, estado...)"
+                value={origem}
+                onChange={(e) => setOrigem(e.target.value)}
+                className="flex-1"
+              />
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Input
+                type="text"
+                placeholder="Destino (rua, cidade, estado...)"
+                value={destino}
+                onChange={(e) => setDestino(e.target.value)}
+                className="flex-1"
+              />
+              <Button
+                onClick={handleRequestVehicle}
+                disabled={isTracking}
+                className="bg-gradient-to-r from-primary to-primary-glow hover:opacity-90 transition-opacity sm:w-auto"
+              >
+                <Navigation className="h-4 w-4 mr-2" />
+                {isTracking ? "Veículo a Caminho" : "Solicitar Veículo"}
+              </Button>
+            </div>
           </div>
         </div>
 

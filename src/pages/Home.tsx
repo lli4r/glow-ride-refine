@@ -38,7 +38,7 @@ const Home = () => {
                 Baixar o App
               </Button>
               <Link to="/sobre">
-                <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
+                <Button size="lg" variant="outline" className="border-white text-primary bg-white hover:bg-white/90">
                   Saiba Mais
                 </Button>
               </Link>
