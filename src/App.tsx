@@ -16,29 +16,33 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
+const Layout = () => (
+  <div className="flex flex-col min-h-screen">
+    <Header />
+    <main className="flex-1">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sobre" element={<Sobre />} />
+        <Route path="/como-funciona" element={<ComoFunciona />} />
+        <Route path="/chamar-veiculo" element={<ChamarVeiculo />} />
+        <Route path="/contato" element={<Contato />} />
+        <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
+        <Route path="/termos-uso" element={<TermosUso />} />
+        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </main>
+    <Footer />
+  </div>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          <main className="flex-1">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/sobre" element={<Sobre />} />
-              <Route path="/como-funciona" element={<ComoFunciona />} />
-              <Route path="/chamar-veiculo" element={<ChamarVeiculo />} />
-              <Route path="/contato" element={<Contato />} />
-              <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
-              <Route path="/termos-uso" element={<TermosUso />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <Layout />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
