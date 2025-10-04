@@ -14,7 +14,112 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      motoristas: {
+        Row: {
+          aprovado: boolean | null
+          cnh: string
+          created_at: string | null
+          documento_veiculo_url: string | null
+          foto_cnh_url: string | null
+          foto_rosto_url: string | null
+          id: string
+          placa_veiculo: string
+          updated_at: string | null
+        }
+        Insert: {
+          aprovado?: boolean | null
+          cnh: string
+          created_at?: string | null
+          documento_veiculo_url?: string | null
+          foto_cnh_url?: string | null
+          foto_rosto_url?: string | null
+          id: string
+          placa_veiculo: string
+          updated_at?: string | null
+        }
+        Update: {
+          aprovado?: boolean | null
+          cnh?: string
+          created_at?: string | null
+          documento_veiculo_url?: string | null
+          foto_cnh_url?: string | null
+          foto_rosto_url?: string | null
+          id?: string
+          placa_veiculo?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "motoristas_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      passageiros: {
+        Row: {
+          created_at: string | null
+          foto_identidade_url: string | null
+          id: string
+          necessidades_especiais: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          foto_identidade_url?: string | null
+          id: string
+          necessidades_especiais?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          foto_identidade_url?: string | null
+          id?: string
+          necessidades_especiais?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "passageiros_id_fkey"
+            columns: ["id"]
+            isOneToOne: true
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string | null
+          id: string
+          nome_completo: string
+          rg: string
+          telefone: string
+          updated_at: string | null
+          user_type: Database["public"]["Enums"]["user_type"]
+        }
+        Insert: {
+          created_at?: string | null
+          id: string
+          nome_completo: string
+          rg: string
+          telefone: string
+          updated_at?: string | null
+          user_type: Database["public"]["Enums"]["user_type"]
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          nome_completo?: string
+          rg?: string
+          telefone?: string
+          updated_at?: string | null
+          user_type?: Database["public"]["Enums"]["user_type"]
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -23,7 +128,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      user_type: "motorista" | "passageiro"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +255,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      user_type: ["motorista", "passageiro"],
+    },
   },
 } as const
