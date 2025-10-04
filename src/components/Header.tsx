@@ -61,6 +61,14 @@ const Header = () => {
             >
               Contato
             </Link>
+            <Link
+              to="/auth"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive("/auth") ? "text-primary" : "text-foreground/80"
+              }`}
+            >
+              Login/Cadastro
+            </Link>
           </nav>
 
           <Button size="sm" className="bg-gradient-to-r from-primary to-primary-glow">
