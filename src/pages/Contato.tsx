@@ -74,7 +74,7 @@ const Contato = () => {
                   <div>
                     <h3 className="font-bold mb-2">Telefone</h3>
                     <p className="text-muted-foreground">0800 123 4567</p>
-                    <p className="text-muted-foreground">(11) 98765-4321</p>
+                    <p className="text-muted-foreground">(47) 98765-4321</p>
                   </div>
                 </div>
               </Card>
@@ -87,9 +87,9 @@ const Contato = () => {
                   <div>
                     <h3 className="font-bold mb-2">Endereço</h3>
                     <p className="text-muted-foreground">
-                      Avenida Paulista, 1000<br />
-                      São Paulo - SP<br />
-                      CEP: 01310-100
+                      Rua XV de Novembro, 1000<br />
+                      Blumenau - SC<br />
+                      CEP: 89010-001
                     </p>
                   </div>
                 </div>
