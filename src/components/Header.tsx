@@ -53,6 +53,14 @@ const Header = () => {
               Chamar um Veículo
             </Link>
             <Link
+              to="/auth"
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive("/auth") ? "text-primary" : "text-foreground/80"
+              }`}
+            >
+              Login/Cadastro
+            </Link>
+            <Link
               to="/contato"
               className={`text-sm font-medium transition-colors hover:text-primary ${
                 isActive("/contato") ? "text-primary" : "text-foreground/80"
