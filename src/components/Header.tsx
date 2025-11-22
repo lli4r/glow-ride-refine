@@ -1,39 +1,10 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logoAcessa from "@/assets/logo-acessa.jpg";
-import { supabase } from "@/integrations/supabase/client";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
-import { LogOut } from "lucide-react";
 
 const Header = () => {
   const location = useLocation();
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const isActive = (path: string) => location.pathname === path;
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setIsLoggedIn(!!session);
-    });
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setIsLoggedIn(!!session);
-    });
-
-    return () => subscription.unsubscribe();
-  }, []);
-
-  const handleLogout = async () => {
-    const { error } = await supabase.auth.signOut();
-    if (error) {
-      toast.error("Erro ao sair");
-    } else {
-      toast.success("Logout realizado com sucesso!");
-      navigate("/");
-    }
-  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -81,24 +52,6 @@ const Header = () => {
             >
               Chamar um Veículo
             </Link>
-            {!isLoggedIn ? (
-              <Link
-                to="/auth"
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive("/auth") ? "text-primary" : "text-foreground/80"
-                }`}
-              >
-                Login/Cadastro
-              </Link>
-            ) : (
-              <button
-                onClick={handleLogout}
-                className="text-sm font-medium transition-colors hover:text-primary text-foreground/80 flex items-center gap-2"
-              >
-                <LogOut className="h-4 w-4" />
-                Sair
-              </button>
-            )}
             <Link
               to="/contato"
               className={`text-sm font-medium transition-colors hover:text-primary ${
