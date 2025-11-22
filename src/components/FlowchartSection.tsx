@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { UserCircle2, Car as CarIcon } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const FlowchartSection = () => {
   return (
@@ -25,9 +26,11 @@ const FlowchartSection = () => {
                 <p className="text-muted-foreground text-center">
                   Solicite viagens com facilidade e segurança
                 </p>
-                <Button className="w-full bg-gradient-to-r from-primary to-primary-glow">
-                  Criar Conta de Passageiro
-                </Button>
+                <Link to="/auth" className="w-full">
+                  <Button className="w-full bg-gradient-to-r from-primary to-primary-glow">
+                    Criar Conta de Passageiro
+                  </Button>
+                </Link>
               </div>
             </Card>
 
@@ -40,9 +43,11 @@ const FlowchartSection = () => {
                 <p className="text-muted-foreground text-center">
                   Ganhe dinheiro dirigindo com flexibilidade
                 </p>
-                <Button className="w-full" variant="outline">
-                  Criar Conta de Motorista
-                </Button>
+                <Link to="/auth" className="w-full">
+                  <Button className="w-full" variant="outline">
+                    Criar Conta de Motorista
+                  </Button>
+                </Link>
               </div>
             </Card>
           </div>

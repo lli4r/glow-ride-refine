@@ -22,13 +22,13 @@ const Sobre = () => {
           <h2 className="text-3xl font-bold mb-8 text-center">Nossa História</h2>
           <Card className="p-8">
             <p className="text-muted-foreground mb-4">
-              O Acessa nasceu de uma necessidade real: proporcionar transporte digno e acessível para pessoas com necessidades especiais de mobilidade. Fundada em 2023, nossa missão sempre foi clara - tornar a locomoção urbana verdadeiramente inclusiva.
+              O Acessa nasceu de uma necessidade real: oferecer transporte digno e acessível para pessoas com mobilidade reduzida. Fundada em 2025, nossa missão é tornar a locomoção urbana mais inclusiva e humana.
             </p>
             <p className="text-muted-foreground mb-4">
-              Percebemos que muitas pessoas enfrentam dificuldades diárias para se deslocar pela cidade, seja para trabalho, consultas médicas ou lazer. Decidimos criar uma solução que não apenas conecta passageiros e motoristas, mas que garante que cada viagem seja realizada com respeito, segurança e conforto.
+              A ideia surgiu quando uma jovem percebeu, no dia a dia, as dificuldades que muitas pessoas enfrentavam para se deslocar pela cidade. Ela queria mudar essa realidade — e, junto com um amigo que acreditava no mesmo propósito, transformou essa vontade em projeto.
             </p>
             <p className="text-muted-foreground">
-              Hoje, somos mais do que um aplicativo de transporte. Somos uma comunidade comprometida com a inclusão, onde cada motorista é treinado para oferecer o melhor atendimento e cada veículo é adaptado para atender necessidades específicas.
+              Assim nasceu o Acessa: um serviço que conecta passageiros a motoristas preparados, com veículos adaptados e atendimento acolhedor. Mais do que um aplicativo, somos uma iniciativa dedicada a garantir respeito, segurança e autonomia em cada viagem.
             </p>
           </Card>
         </div>
