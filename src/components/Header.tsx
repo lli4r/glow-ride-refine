@@ -55,26 +55,6 @@ const Header = () => {
             >
               Chamar um Veículo
             </Link>
-            {user ? (
-              <Link
-                to="/area-cliente"
-                className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1 ${
-                  isActive("/area-cliente") ? "text-primary" : "text-foreground/80"
-                }`}
-              >
-                <User className="h-4 w-4" />
-                Área do Cliente
-              </Link>
-            ) : (
-              <Link
-                to="/auth"
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive("/auth") ? "text-primary" : "text-foreground/80"
-                }`}
-              >
-                Login/Cadastro
-              </Link>
-            )}
             <Link
               to="/contato"
               className={`text-sm font-medium transition-colors hover:text-primary ${
@@ -85,9 +65,20 @@ const Header = () => {
             </Link>
           </nav>
 
-          <Button size="sm" className="bg-gradient-to-r from-primary to-primary-glow">
-            Baixar App
-          </Button>
+          <div className="flex items-center gap-3">
+            <Link
+              to={user ? "/area-cliente" : "/auth"}
+              className={`p-2 rounded-full transition-colors hover:bg-primary/10 ${
+                isActive("/area-cliente") || isActive("/auth") ? "text-primary" : "text-foreground/80"
+              }`}
+              title={user ? "Área do Cliente" : "Login/Cadastro"}
+            >
+              <User className="h-5 w-5" />
+            </Link>
+            <Button size="sm" className="bg-gradient-to-r from-primary to-primary-glow">
+              Baixar App
+            </Button>
+          </div>
         </div>
       </div>
     </header>
