@@ -14,6 +14,7 @@ import PoliticaPrivacidade from "./pages/PoliticaPrivacidade";
 import TermosUso from "./pages/TermosUso";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
+import AreaCliente from "./pages/AreaCliente";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const Layout = () => (
         <Route path="/chamar-veiculo" element={<ChamarVeiculo />} />
         <Route path="/contato" element={<Contato />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/area-cliente" element={<AreaCliente />} />
         <Route path="/politica-privacidade" element={<PoliticaPrivacidade />} />
         <Route path="/termos-uso" element={<TermosUso />} />
         {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

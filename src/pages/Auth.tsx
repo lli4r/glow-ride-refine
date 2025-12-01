@@ -6,10 +6,21 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { Loader2, User, Car } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Auth = () => {
+  const { login, register, user } = useAuth();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/area-cliente");
+    }
+  }, [user, navigate]);
 
   // Login state
   const [loginEmail, setLoginEmail] = useState("");
@@ -38,11 +49,16 @@ const Auth = () => {
 
     setLoading(true);
     
-    // Simulação de login (sem backend)
-    setTimeout(() => {
+    const result = await login(loginEmail, loginPassword);
+    
+    if (result.success) {
       toast.success("Login realizado com sucesso!");
-      setLoading(false);
-    }, 1000);
+      navigate("/area-cliente");
+    } else {
+      toast.error(result.error || "Erro ao fazer login");
+    }
+    
+    setLoading(false);
   };
 
   const handleCadastroPassageiro = async (e: React.FormEvent) => {
@@ -55,11 +71,22 @@ const Auth = () => {
 
     setLoading(true);
     
-    // Simulação de cadastro (sem backend)
-    setTimeout(() => {
+    const result = await register(
+      passageiroEmail,
+      passageiroPassword,
+      passageiroNome,
+      passageiroTelefone,
+      "passageiro"
+    );
+    
+    if (result.success) {
       toast.success("Cadastro realizado com sucesso!");
-      setLoading(false);
-    }, 1000);
+      navigate("/area-cliente");
+    } else {
+      toast.error(result.error || "Erro ao cadastrar");
+    }
+    
+    setLoading(false);
   };
 
   const handleCadastroMotorista = async (e: React.FormEvent) => {
@@ -72,11 +99,23 @@ const Auth = () => {
 
     setLoading(true);
     
-    // Simulação de cadastro (sem backend)
-    setTimeout(() => {
+    const result = await register(
+      motoristaEmail,
+      motoristaPassword,
+      motoristaNome,
+      motoristaTelefone,
+      "motorista",
+      motoristaPlaca
+    );
+    
+    if (result.success) {
       toast.success("Cadastro realizado com sucesso!");
-      setLoading(false);
-    }, 1000);
+      navigate("/area-cliente");
+    } else {
+      toast.error(result.error || "Erro ao cadastrar");
+    }
+    
+    setLoading(false);
   };
 
   return (

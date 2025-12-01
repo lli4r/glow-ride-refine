@@ -1,9 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import logoAcessa from "@/assets/logo-acessa.jpg";
+import { User } from "lucide-react";
+import { useAuth } from "@/hooks/useAuth";
 
 const Header = () => {
   const location = useLocation();
+  const { user } = useAuth();
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -52,14 +55,26 @@ const Header = () => {
             >
               Chamar um Veículo
             </Link>
-            <Link
-              to="/auth"
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive("/auth") ? "text-primary" : "text-foreground/80"
-              }`}
-            >
-              Login/Cadastro
-            </Link>
+            {user ? (
+              <Link
+                to="/area-cliente"
+                className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-1 ${
+                  isActive("/area-cliente") ? "text-primary" : "text-foreground/80"
+                }`}
+              >
+                <User className="h-4 w-4" />
+                Área do Cliente
+              </Link>
+            ) : (
+              <Link
+                to="/auth"
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive("/auth") ? "text-primary" : "text-foreground/80"
+                }`}
+              >
+                Login/Cadastro
+              </Link>
+            )}
             <Link
               to="/contato"
               className={`text-sm font-medium transition-colors hover:text-primary ${
