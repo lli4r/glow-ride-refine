@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -7,20 +7,26 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 import { Loader2, User, Car } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 const Auth = () => {
   const { login, register, user } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
+  
+  const mode = searchParams.get("mode");
+  const [isLogin, setIsLogin] = useState(mode !== "register");
 
   useEffect(() => {
     if (user) {
       navigate("/area-cliente");
     }
   }, [user, navigate]);
+
+  useEffect(() => {
+    setIsLogin(mode !== "register");
+  }, [mode]);
 
   // Login state
   const [loginEmail, setLoginEmail] = useState("");
